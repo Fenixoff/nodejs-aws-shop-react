@@ -36,3 +36,13 @@ Runs tests in console, in browser or with coverage.
 ### `lint`, `prettier`
 
 Runs linting and formatting for all files in `src` folder.
+
+### `deploy`, `diff`, `destroy`
+
+Runs corresponding AWS CDK commands.
+
+## Deployment links
+
+[CloudFront URL](http://d2plsssco6ks4.cloudfront.net)
+
+[S3 Bucket](http://frontendappstack-assetsbucket5cb76180-1tdb693ydb81t.s3-website.eu-north-1.amazonaws.com)
