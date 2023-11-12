@@ -20,6 +20,7 @@ export class FrontendAppStack extends Stack {
         origin: new cfOrigins.S3Origin(bucket),
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
       },
+      priceClass: cf.PriceClass.PRICE_CLASS_100,
       defaultRootObject: 'index.html',
       errorResponses: [
         {
