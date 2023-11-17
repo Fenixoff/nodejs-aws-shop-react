@@ -27,6 +27,11 @@ export class FrontendAppStack extends Stack {
           httpStatus: 403,
           responseHttpStatus: 200,
           responsePagePath: '/index.html'
+        },
+        {
+          httpStatus: 404,
+          responseHttpStatus: 200,
+          responsePagePath: '/index.html'
         }
       ]
     });
