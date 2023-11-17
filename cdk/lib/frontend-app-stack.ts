@@ -10,24 +10,14 @@ export class FrontendAppStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const siteIndex = 'index.html';
-
     const bucket = new s3.Bucket(this, 'AssetsBucket', {
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
-
-      websiteIndexDocument: siteIndex,
-      websiteErrorDocument: siteIndex
     });
-
-    const cfAccessIdenyity = new cf.OriginAccessIdentity(this, 'CfIdentity');
-    bucket.grantRead(cfAccessIdenyity);
 
     const cfDistribution = new cf.Distribution(this, 'AppDistribution', {
       defaultBehavior: {
-        origin: new cfOrigins.S3Origin(bucket, {
-          originAccessIdentity: cfAccessIdenyity
-        }),
+        origin: new cfOrigins.S3Origin(bucket),
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
       },
       priceClass: cf.PriceClass.PRICE_CLASS_100,
