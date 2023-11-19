@@ -43,6 +43,8 @@ Runs corresponding AWS CDK commands.
 
 ## Deployment links
 
-[CloudFront URL](http://d2plsssco6ks4.cloudfront.net)
+[CloudFront URL](https://d2plsssco6ks4.cloudfront.net)
 
-[S3 Bucket](http://frontendappstack-assetsbucket5cb76180-1tdb693ydb81t.s3-website.eu-north-1.amazonaws.com)
+## Backend repository
+
+[rss-cloud-developer-be](https://github.com/Fenixoff/rss-cloud-developer-be)
