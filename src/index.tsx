@@ -51,6 +51,11 @@ if (import.meta.env.DEV) {
   worker.start({ onUnhandledRequest: "bypass" });
 }
 
+// Default user token for demo purposes. You can provide any valid uuid as a
+// user name encoded with base64 inside the token.
+localStorage.setItem('authorization_token',
+  'MzRhNTVkYmEtMzA5ZC00YjgwLWI5YzEtYTk4MWY0Y2FiMTJiOlRlc3Q=');
+
 const container = document.getElementById("app");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
