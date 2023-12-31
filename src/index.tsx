@@ -51,6 +51,9 @@ if (import.meta.env.DEV) {
   worker.start({ onUnhandledRequest: "bypass" });
 }
 
+// Default user token for demo purposes. User is created on the first request.
+localStorage.setItem('authorization_token', 'VGVzdFVzZXI6VGVzdA==');
+
 const container = document.getElementById("app");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);

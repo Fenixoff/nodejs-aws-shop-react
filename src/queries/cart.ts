@@ -2,16 +2,30 @@ import axios, { AxiosError } from "axios";
 import React from "react";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import API_PATHS from "~/constants/apiPaths";
+import { Cart } from "~/models/Cart";
 import { CartItem } from "~/models/CartItem";
+import { AvailableProduct } from "~/models/Product";
 
 export function useCart() {
   return useQuery<CartItem[], AxiosError>("cart", async () => {
-    const res = await axios.get<CartItem[]>(`${API_PATHS.cart}/profile/cart`, {
+    const res = await axios.get<Cart>(`${API_PATHS.cart}/profile/cart`, {
       headers: {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
       },
     });
-    return res.data;
+
+    const filledItems = res.data.items.map(async (item) => ({
+      ...item,
+      product: {
+        ...item.product,
+        ...(
+          await axios.get<AvailableProduct>(
+            `${API_PATHS.product}/products/${item.product.id}`,
+          )
+        ).data,
+      },
+    }));
+    return Promise.all(filledItems);
   });
 }
 
@@ -24,7 +38,7 @@ export function useInvalidateCart() {
   const queryClient = useQueryClient();
   return React.useCallback(
     () => queryClient.invalidateQueries("cart", { exact: true }),
-    []
+    [],
   );
 }
 
@@ -34,6 +48,6 @@ export function useUpsertCart() {
       headers: {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
       },
-    })
+    }),
   );
 }
