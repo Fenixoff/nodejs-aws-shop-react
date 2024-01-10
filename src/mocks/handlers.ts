@@ -15,11 +15,11 @@ export const handlers = [
   rest.delete(`${API_PATHS.bff}/product/:id`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
-  rest.get(`${API_PATHS.bff}/product/available`, (req, res, ctx) => {
+  rest.get(`${API_PATHS.bff}/product/products`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.delay(),
-      ctx.json<AvailableProduct[]>(availableProducts)
+      ctx.json<AvailableProduct[]>(availableProducts),
     );
   }),
   rest.get(`${API_PATHS.bff}/product/:id`, (req, res, ctx) => {
@@ -30,13 +30,13 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.delay(),
-      ctx.json<AvailableProduct>(product)
+      ctx.json<AvailableProduct>(product),
     );
   }),
-  rest.get(`${API_PATHS.cart}/profile/cart`, (req, res, ctx) => {
+  rest.get(`${API_PATHS.bff}/cart/profile/cart`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(), ctx.json<CartItem[]>(cart));
   }),
-  rest.put(`${API_PATHS.cart}/profile/cart`, (req, res, ctx) => {
+  rest.put(`${API_PATHS.bff}/cart/profile/cart`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
   rest.get(`${API_PATHS.order}/order`, (req, res, ctx) => {
